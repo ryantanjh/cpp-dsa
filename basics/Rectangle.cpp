@@ -1,3 +1,7 @@
+/**
+ * Simple rectangle class to show default constructor, getter, setter, destructor
+ */
+
 #include <iostream>
 using namespace std; 
 
@@ -9,11 +13,15 @@ class Rectangle
 		int breadth; 
 
 	public: 
-		Rectangle() {length = breadth = 1;}
+		Rectangle() {
+            cout << "Default Constructor is called for rectangle (" << this->getLength() << "," << this->getBreadth() << ")" << endl;
+            length = breadth = 1; // default members
+        }
 		Rectangle(int length, int breadth)
 		{
 			this->length = length; 
-			this->breadth = breadth; 
+			this->breadth = breadth;
+            cout << "Constructor is called for rectangle (" << this->getLength() << "," << this->getBreadth() << ")" << endl;
 		}
 		int area()
 		{
@@ -25,15 +33,28 @@ class Rectangle
 		{
 			length = l;
 		}
-		~Rectangle(){};  
-
+		~Rectangle(){
+            cout << "Destructor is called for rectangle (" << this->getLength() << "," << this->getBreadth() << ")" << endl;
+        };
 };
 
 
 int main() {
-	Rectangle r(10,5); 
+	Rectangle r(10,5);
 	cout<< "area: " << r.area() << endl; 
 	cout << "length: " << r.getLength() << endl; 
 	r.setLength(5); 
-	cout << "new area: " << r.area() << endl; 
+	cout << "new area: " << r.area() << endl;
+    cout << "=======" << endl;
+
+    Rectangle r2;
+    cout << "default length: " << r2.getLength() << endl;
+    /**
+     * Notice how after we exit the if block, the destructor for r3 is called, meaning we cannot
+     * access it outside this scope
+     * Destructors for r1 and r2 are called when exiting main()
+     */
+    if (true) {
+        Rectangle r3(9, 9);
+    }
 }

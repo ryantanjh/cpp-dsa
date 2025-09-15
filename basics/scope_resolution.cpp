@@ -1,3 +1,6 @@
+/**
+ * Code to show how to declare classes and use scope resolution to define implementations
+ */
 #include <iostream>
 using namespace std;
 
@@ -52,13 +55,12 @@ Rectangle2::~Rectangle2() {
     // Destructor implementation
 }
 
-// Main function
 int main() {
     Rectangle2 r(10, 5);
     cout << "area: " << r.area() << endl;
     cout << "length: " << r.getLength() << endl;
     r.setLength(5);
-    cout << "new area: " << r.area() << endl;
+    cout << "new area: " << r.area() << endl; // Should show 25
     
     return 0;
 }

@@ -1,4 +1,8 @@
-#include <iostream> 
+/**
+ * Pass the memory address (pointer) of the object #todo fix this
+ */
+
+#include <iostream>
 using namespace std; 
 
 struct Rectangle {

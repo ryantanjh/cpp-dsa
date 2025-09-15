@@ -1,3 +1,7 @@
+/**
+ * Demonstrate how to create a class with generic type
+ */
+
 #include <iostream>
 using namespace std; 
 
@@ -16,7 +20,7 @@ class Arithametic
 template<class T> 
 Arithametic<T>::Arithametic(T a, T b)
 {
-	this->a = a; 
+	this->a = a; // this is a pointer to the class object, so we use -> to access pointer member values
 	this->b = b; 
 };
 

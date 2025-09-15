@@ -1,4 +1,7 @@
-#include <iostream> 
+/**
+ * Simple examples showing 3 different ways to pass params in functions
+ */
+#include <iostream>
 using namespace std; 
 
 
@@ -37,13 +40,13 @@ int main() {
 	
 	// pass by value for swap
 	swap(x, y); 
-	cout << "x is 2: " << x << ", y is 3: " << y << endl;  
+	cout << "x: " << x << ", y: " << y << endl;  // x and y remains the same as 2 and 3
 
 	// call by address. Passes address to function. Needs de-referencing. Allows us to modify the original variables
 	swap2(&x, &y);
-	cout << "x is 3: " << x << ", y is 2: " << y << endl; 
+	cout << "x: " << x << ", y: " << y << endl;  // x and y are swapped
 
 	// call by reference. Dont use unless function is simple. Easy to introduce bugs since function scope is technically part of main
 	swap3(x, y);
-	cout << "x is 2: " << x << ", y is 3: " << y << endl; 
+	cout << "x: " << x << ", y: " << y << endl; // x and y are swapped again => so back to original
 }
