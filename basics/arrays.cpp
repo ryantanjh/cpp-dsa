@@ -49,7 +49,7 @@ int main() {
     for (int i = 0; i < arr_size; i++) { // First elem in arr modified to 99
         // accessing members of array on heap. Compiler doesnt know size of array on heap, so need to specify
         // range in for loop
-        cout << "C elem: " << C[i] << endl;
+        cout << "C elem: " << C[i] << endl; // note that for heap, the unassigned elems are 0
     }
     return 0;
 }
