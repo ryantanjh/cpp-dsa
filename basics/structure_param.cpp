@@ -34,7 +34,7 @@ void changeLength(struct Rectangle *p) {
 }
 
 int main() {
-	struct Rectangle r1 = Rectangle{10, 5}; 
+	struct Rectangle r1 = {10, 5}; 
 	changeLength(&r1); 
 	int a = area(r1); 
 	cout << "area : " << a << endl; 
@@ -46,8 +46,9 @@ int main() {
 		cout << t.A[i] << endl; 
 	}
 
-	cout << "=========" << endl; 
-	struct Rectangle *ptr = heapRectangle(); 
-	cout << ptr->l << ", " << ptr->b << endl; 
-	return -1; 
+	cout << "=========" << endl;
+	struct Rectangle *ptr = heapRectangle();
+	cout << ptr->l << ", " << ptr->b << endl;
+	delete ptr; // Free the allocated memory
+	return 0; 
 }
