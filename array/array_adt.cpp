@@ -46,8 +46,8 @@ public:
          */
         if (idx >= 0 && idx <= curr_length) {
             for (int i = curr_length; i > idx; i--) {
-                A[i] = A[i -
-                         1]; // shift value on the left to curr space. Don't shift if i = index as we want to insert there
+                A[i] = A[i - 1];
+                // shift value on the left to curr space. Don't shift if i = index as we want to insert there
             }
             A[idx] = elem;
             curr_length++;
@@ -251,10 +251,6 @@ public:
             }
         }
         return arr3;
-    }
-
-    Array *array_difference(Array *arr2) {
-
     }
 
 };
