@@ -1,0 +1,6 @@
+Linkedlist notes
+
+- problem with array: fixed size
+- idea: each node has value, and pointer to next node ie. Node type, which has its
+own address
+- allows dynamic sizing

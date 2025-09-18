@@ -1,0 +1,5 @@
+array notes
+
+- collection of elements of same type
+- need to specify size
+- allocate contiguous block of memory on stack/heap
