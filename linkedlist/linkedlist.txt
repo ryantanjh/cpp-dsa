@@ -3,4 +3,6 @@ Linkedlist notes
 - problem with array: fixed size
 - idea: each node has value, and pointer to next node ie. Node type, which has its
 own address
-- allows dynamic sizing
+- allows dynamic sizing. Which is why we represent linkedlist in a heap.
+- Can be any size, and we can allocate memory dynamically
+- For stack, need to define size of memory allocated at compile time

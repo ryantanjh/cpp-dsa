@@ -1,0 +1,123 @@
+============== Terminology ===================
+- root
+- edge : if there are n nodes, there are n-1 edges. root node has no edge coming in
+- subset: subtree
+- parent/child
+- siblings: children of same parent
+- descendents: all nodes under a particular node
+- ancestors: all nodes along the path from a node to root node
+- degree: number of children of a node
+- leaf/external nodes: nodes w degree 0
+- internal nodes: nodes w degree > 0
+- levels: level start from 1 at root
+- height of tree: start at 0
+- forest: collection of trees that are not connected
+
+============== Height vs Node of trees ===================
+Used for time and space complexity analysis
+
+Binary tree:
+- tree of degree 2 : every node can have {0, 1, 2} children
+- Given n nodes, number of binary trees = 2nCn / (n+1)
+- if nodes are labelled: multiply by n!
+
+Height vs Nodes of binary tree
+- if height of tree is given , we calculate and min and max number of nodes
+    - min nodes: h + 1 (each node has just one child)
+    - max nodes: 2^(h+1) - 1 (if each node has 2 child, number of nodes is 1 + 2 + 2^2 + 2^3 + ..)
+        - this is sum of geomeric series formula
+- if number of nodes is given, we can calculate the min and max height of tree by reversing the formula
+
+Internal vs External nodes of binary tree
+- e = i + 1
+
+Strict binary tree
+- every node can have {0, 2} children
+- if n nodes are given, min height is o(logbase-2(n)), max height is o(n/2)
+- if height is given, min n is O(2h), max n = O(2^h)
+
+Internal vs External nodes of strict binary tree
+- e = i + 1
+
+Strict m-aray tree
+- every node can have {0, m} children
+- How to proof: If height is given, we see that at each level we add m^h nodes. So max total nodes is sum of GP formula
+    - Min total: At each level, for we just add m nodes ie. m * h (since the other nodes will have 0 children)
+    - if height is given, min n is O(mh + 1), max n = O(m^h)
+- To see min/max height when n nodes are given, reverse the above formulas
+    - if n nodes are given, min height is o(logbase-m(n)), max height is o(n/m)
+
+Internal vs External nodes of strict m-ary tree
+- proof by drawing out examples of 3-aray tree of h=2 and h=3. Will see pattern
+- e = (m-1)i + 1
+
+=============Representations of binary tree====================
+- Array representation
+    - For each element if parent index is i, left child is at index 2i, right child is at index 2i + 1
+    - Given child index, parent is floor(child index / 2)
+- Linked representation
+    - Each node has data, left child and right child
+
+============== Full vs complete binary tree ===================
+Full binary tree
+- tree of height h and max nodes
+- full tree means it is complete
+Complete binary tree
+- If we represent it in an array, if there is no blank space between elems, it is a complete binary tree
+
+Why do we need to know this?
+- For array representation, we do not want blank spaces in the array. eg. hard to iterate
+- so if tree is not complete, we should not represent it in an array
+
+Strict vs complete
+- you can be strict but not complete
+- you can be complete but not strict
+- you can be both strict and complete
+- you an be neither strict not complete
+
+============== Tree traversal ===================
+pre-order: node, pre-order(left), pre-order(right)
+in-order: in-order(left), node, in-order(right)
+post-order: post-order(left), post-order(right), node
+level-order: level order
+
+Boundary method to get traversal
+- Pre-order: At each node, draw a mark on the left
+- In-order: At each node, draw a mark on the bottom
+- Post-order: At each node, draw a mark on the right
+Starting from root, trace the boundaries from the left. Whenever cross a mark, add the node value
+
+============== Generating binary tree ===================
+1. create a root node, initialise a queue, and have a pointer to root node, as well as curr pointer to root node.
+Set data to root node, and left and right child of root node set to null. Then insert root address to queue
+
+2. while queue is not empty:
+    3. pop address from queue and assing curr pointer to it
+    For value in [left child value, right child value],
+        4. Create the left/right child node and fill its value. Set its left and right child to null
+        5. point curr->left/right child to new node
+        6. Push address of the new node to queue
+
+============== Tree traversals ===================
+- Time complexity is O(N): Regardless of recursive or iterative
+- Recursive is easy to implement. Iterative needs a stack. Post order is quite complicated as well
+- Can we generate trees given the pre-order / post-order / in-order?
+    - No. For each order you will be able to generate multiple of the same trees
+- Only 2 ways:
+    1. pre-order + in-order
+    2. post-order + in-order
+- Why?
+     - For pre-order: A, B, C => C can go on either left or right of B, meaning there are 2 trees
+         - With in-order B, A, C, we know A is root, B is left, C, is right
+
+Procedure for generating tree using preorder and inorder
+https://tutorialhorizon.com/algorithms/make-a-binary-tree-from-given-inorder-and-preorder-traveral/
+- iterate through the pre-order list
+    - set first element of pre-order as root
+    - at each iteration:
+        - Find the index of this value in the in-order groups
+        - Get 2 groups by splitting the in-order: Those on the left, and those on the right
+        - Check if the group is a single node, in which case just return that node
+- idea: We iterate through pre-order since starting is root node. Then for each node, we can determine what goes
+to its left or right using in-order. This then can be done recursively until the left and right side of the node
+is not a group but a single value
