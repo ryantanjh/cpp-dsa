@@ -1,0 +1,10 @@
+Binary search tree
+
+- For each node, all elements on the left are smaller, all elements on the right are bigger
+- Cannot have duplicates
+- In-order traversal gives sorted order
+
+Drawback of BST
+- It is possible you generate a BST of height n eg. inserting 1,2,3,4,5,6,7
+- Cannot control this as the inputs are user inputs
+- That is why we need AVL trees, which is balanced BST

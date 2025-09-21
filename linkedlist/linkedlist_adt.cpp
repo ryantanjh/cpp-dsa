@@ -92,6 +92,11 @@ public:
     }
 
     void insert(int index, int val) {
+        /**
+         * 1. Reach the point at which you want to insert
+         * 2. Create a new node
+         * 3. Set the new node to point to current's next, and current's next to point to new node
+         */
         Node *curr = first;
         if (index < 0 || index > length()) {
             return;
@@ -113,6 +118,9 @@ public:
     }
 
     void sorted_insert(int val) {
+        /**
+         * Same as insert but must reach value first
+         */
         Node *p = first;
         Node *q = NULL;
         while (p && p->data < val) {
@@ -128,6 +136,9 @@ public:
     int del(int idx) {
         /**
          * Index 1 is 0 index
+         * 1. Reach the index you want to delete. There needs to be a pointer to the node prior to it
+         * 2. Set prior node to the current's next to remove it
+         * 3. Delete current from memory
          */
         int x = -1;
         if (idx < 1 || idx > length()) {
@@ -172,6 +183,9 @@ public:
          * Using sliding pointer algo.
          * Can copy all values of each node into array, then iterate through array backwards and change values in
          * node. But we don't want to change node values as they can require large memory
+         * 3 pointers: first pointer is to keep moving forward
+         * Second pointer is used to reverse the next to the third pointer
+         * When we reverse the next, first pointer is still there to move onwards
          */
         Node *p = first;
         Node *q = nullptr;
@@ -186,6 +200,9 @@ public:
     }
 
     void concat(LinkedList *l2) {
+        /**
+         * Reach last node and set next to the new list
+         */
         Node *p = first;
         while (p->next) {
             p = p->next; // p stops at last pointer
@@ -196,6 +213,10 @@ public:
     void merge(LinkedList *l2) {
         /**
          * Merge 2 sorted list
+         * 1. Set the first node
+         * 2. Keep 2 pointers on both lists. Add the smaller one to the merge list and increment the curr pointer till
+         * one of them reach the end
+         * 3. Add the remaining elements of the other list
          */
         Node *p = first; // pointer for l1
         Node *q = l2->first; // pointer for l2
@@ -239,6 +260,9 @@ public:
     bool is_loop() {
         /**
          * Returns true if linkedlist is a loop
+         * To check if it is loop, think of 2 cars in a circular track, one at twice the speed.
+         * They will eventually collide (terminating condition for loop)
+         * If one of the cars reach null, means there is no circle
          */
         Node *p = first;
         Node *q = first;
