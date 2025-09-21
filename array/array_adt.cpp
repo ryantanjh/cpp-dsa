@@ -43,6 +43,7 @@ public:
     void insert(int idx, int elem) {
         /**
          * O(N) worst case if insert at idx 0. O(1) best case if insert at last index
+         * Shift all values to the right by 1, and insert before that
          */
         if (idx >= 0 && idx <= curr_length) {
             for (int i = curr_length; i > idx; i--) {
@@ -57,6 +58,7 @@ public:
     int del(int idx) {
         /**
          * Returns deleted elem
+         * Shift all values to the left by 1, and set that value to 0
          * O(N) worst cast. O(1) best case
          */
         if (idx >= 0 && idx < curr_length) { // if length is 5, last elem index is 4
@@ -88,6 +90,9 @@ public:
         /**
          * Assumption: Array is already sorted
          * O(log(n))
+         * 1. Set a low and high pointer
+         * 2. If val > mid value, look to the right, else look to the left
+         * 3. If mid value = val, terminate
          */
         int low = 0;
         int high = curr_length - 1; // index of last elem
@@ -150,6 +155,10 @@ public:
     }
 
     void reverse() {
+        /**
+         * Create new array and copy all elements there
+         * Then iterate backwards from new array, and copy backwards
+         */
         int B[curr_length];
         for (int i = curr_length - 1, j = 0; i >= 0; i--, j++) {
             B[j] = A[i];
@@ -180,6 +189,8 @@ public:
         /**
          * Returns pointer to new array, merging 2 different arrays
          * Assumption: both arrays are sorted
+         * 1. Create a new array with a larger size
+         * 2. Use 2 pointers on both arrays, and append to new array based on which is smaller
          */
         Array *arr3 = new Array(curr_length + arr2->curr_length);
         int i = 0; // pointer for arr 1

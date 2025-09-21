@@ -83,6 +83,10 @@ void in_order(Node *root) {
 }
 
 void level_order(Node *root) {
+    /**
+     * 1. Insert root into queue
+     * 2. While queue is not empty, pop from queue, and print/push the elements on its left and right
+     */
     Node *curr = root;
     cout << root->data << ", ";
     queue<Node *> q;
@@ -103,7 +107,7 @@ void level_order(Node *root) {
 
 int count(Node *p) {
     /**
-     * Notice it is post order traversal
+     * Travese the tree using any traversal method and add 1 on each call
      */
     if (p) {
         int x = count(p->left_child);
@@ -115,6 +119,10 @@ int count(Node *p) {
 }
 
 int height(Node *p) {
+    /**
+     * Get the height of your left and right subtree. Take the taller tree
+     * Getting height of sub tree is recursive
+     */
     if (p) {
         int x = height(p->left_child);
         int y = height(p->right_child);
