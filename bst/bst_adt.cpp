@@ -161,5 +161,71 @@ public:
 };
 
 int main() {
+    cout << "BST ADT Test Suite\n";
+    cout << "==================\n";
+
+    BST bst;
+
+    // Test 1: Insert operations
+    cout << "\n=== Insert Operations ===\n";
+    bst.insert(50);
+    cout << "Inserted 50: ";
+    BST::inorder_display(bst.root);
+    cout << "\n";
+
+    bst.insert(30);
+    bst.insert(70);
+    bst.insert(20);
+    bst.insert(40);
+    bst.insert(60);
+    bst.insert(80);
+    cout << "Full tree: ";
+    BST::inorder_display(bst.root);
+    cout << "\n";
+
+    // Test duplicate insertion
+    bst.insert(50);
+    cout << "After duplicate 50: ";
+    BST::inorder_display(bst.root);
+    cout << "\n";
+
+    // Test 2: Search operations
+    cout << "\n=== Search Operations ===\n";
+    cout << "Search 40: " << (bst.search(40) ? "Found" : "Not Found") << "\n";
+    cout << "Search 25: " << (bst.search(25) ? "Found" : "Not Found") << "\n";
+    cout << "Search 80: " << (bst.search(80) ? "Found" : "Not Found") << "\n";
+
+    // Test 3: Height calculation
+    cout << "\n=== Height Calculation ===\n";
+    cout << "Tree height: " << bst.height(bst.root) << "\n";
+
+    // Test 4: Delete operations
+    cout << "\n=== Delete Operations ===\n";
+
+    // Delete leaf node
+    cout << "Before deleting 20: ";
+    BST::inorder_display(bst.root);
+    cout << "\n";
+    bst.root = bst.del(bst.root, 20);
+    cout << "After deleting 20: ";
+    BST::inorder_display(bst.root);
+    cout << "\n";
+
+    // Delete node with two children (root)
+    cout << "Before deleting 50: ";
+    BST::inorder_display(bst.root);
+    cout << "\n";
+    bst.root = bst.del(bst.root, 50);
+    cout << "After deleting 50: ";
+    BST::inorder_display(bst.root);
+    cout << "\n";
+
+    // Test 5: Edge cases
+    cout << "\n=== Edge Cases ===\n";
+    BST empty;
+    cout << "Empty tree height: " << empty.height(empty.root) << "\n";
+    cout << "Search in empty tree: " << (empty.search(10) ? "Found" : "Not Found") << "\n";
+
+    cout << "\nAll tests completed!\n";
     return 0;
 }
