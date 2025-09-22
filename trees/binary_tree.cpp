@@ -56,6 +56,12 @@ Node *create_tree() {
 }
 
 void pre_order(Node *root) {
+    /*
+     *       1
+     *    2     3
+     *  4   5 6   7
+     * pre-order: 1, 2, 4, 5, 3, 6, 7,
+     */
     Node *curr = root;
     if (curr) {
         cout << curr->data << ", ";
@@ -65,6 +71,12 @@ void pre_order(Node *root) {
 }
 
 void post_order(Node *root) {
+    /*
+    *       1
+    *    2     3
+    *  4   5 6   7
+    * post-order: 4, 5, 2, 6, 7, 3, 1
+    */
     Node *curr = root;
     if (curr) {
         post_order(curr->left_child);
@@ -74,6 +86,12 @@ void post_order(Node *root) {
 }
 
 void in_order(Node *root) {
+    /*
+    *       1
+    *    2     3
+    *  4   5 6   7
+    * in-order: 4, 2, 5, 1, 6, 3, 7
+    */
     Node *curr = root;
     if (curr) {
         in_order(curr->left_child);
@@ -150,3 +168,11 @@ int main() {
     cout << "height: " << height(root) << endl;
     return -1;
 }
+
+/**
+*
+ * 1, 2, 4, 5, 3, 6, 7,
+4, 5, 2, 6, 7, 3, 1,
+4, 2, 5, 1, 6, 3, 7,
+1, 2, 3, 4, 5, 6, 7,
+*/
