@@ -1,0 +1,38 @@
+BST
+
+Balance factor = height of left subtree - height of right sub tree
+A tree is balanced if |balance factor| <= 1
+
+Rotations
+- Always done on 3 nodes
+- LL: 3 nodes where all are left pointer. Pull string from right (1 steps)
+- RR: 3 nodes where all are right pointer. Pull string from left (1 steps)
+- LR: 3 nodes where first node is left, then second node is right. First convert to LL imbalance then do LL rotation (2 steps)
+Or node 3 moves up to node 1 position and node 1 moves to right of node 3
+- RL: 3 nodes where first node is right, then second node is left. First convert to RR imbalance then do RR rotation (2 steps)
+Or node 3 moves up to node 1 position and node 1 moves to left of node 3
+
+General formula
+1. Look at node 1. If its factor > 1, we need to perform rotation. Eg. lets say it is 2, meaning its left
+subtree is taller than right subtree
+2. Now do we perform LL or LR rotation. If node 2 has negative balance factor, perform LR as its right subtree is taller
+If node 2 has positive balance factor, then perform LL rotation as its left subtree is taller
+3. How to perform LL rotation. Rotate around Node 1. Right child of Node 2 now becomes Node 1's left child after rotation
+4. How to perform LR rotation. Node 3 moves up to node 1 position and node 1 moves to right of node 3.
+Node 3 left child becomes node 2 right child. Node 3 right child becomes node 1 left child
+
+Generating AVL tree
+- Node now has height property
+- At every insertion, we need to calculate balance factors and perform rotation if it exceeds 2 or -2
+- This can be done recursively
+1. Left child = insert(left child with new node) if new node is smaller then curr. Else insert to right child
+2. Update height of curr node
+3. Based on balance factor of curr node and its left and right child, perform one of the 4 rotations if necessary. If
+not needed just return current node
+
+Deletion of AVL tree
+- same procedure as deletion from BST but need do balancing. Deletion can result in the following 6 different cases
+l1: Parent is 2, left child is 1: perform LL
+l-1: Parent is 2, left child is -1: perform LR
+l0: Parent is 2, left child is 0. Can perform either LL or LR
+Remaining 3 cases are opposite
