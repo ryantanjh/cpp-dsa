@@ -1,0 +1,78 @@
+# hashing
+- Idea: Search for keys in O(1) time
+= We have a hash function, which takes in the value and returns the index in an array
+- eg. [1, 5, 9]. Create an array of size 9, and store the elements in the respective index
+- Constant look up but space inefficient
+
+How to improve space efficiency
+- h(x) = x % 10
+- This limits the size of an array to 10
+- However this can lead to collision eg. Both 15 and 25 will be mapped to index 5
+
+How to deal with collision
+1. Open hashing => take more space beyond existing table
+    - chaining
+2. Closed hashing => do not take up additional space. if collision, find another empty index
+    - linear probing
+    - quadratic probing
+    - double hashing
+
+Chaining
+- Idea: Set an array of size s. Each index is a pointer to a linked list. If collision, we just append to linked list
+- loading factor: number of elements / size of array
+    - Idea: We expect that on average, each index in the array has lambda elements (elements uniformly distributed)
+    - Search Best case: 1, search worst case: 1 + lambda
+- Choosing a correct hash function
+    - imagine hash function is mod 10, but all elements are multiples of 5 and you do chaining, they will all be in the same linked list
+    - you need to choose a good hash function so that elements are uniformly distributed
+- deletion
+    - same time complexity as search. Same concept as deleting a node in a linked list
+
+Linear probing
+- idea: if there is a collision, keep looking in the next index until empty space is found
+- hash function: h'(x) = ( h(x) + f(i) ) % 10 where f(i) = i and i = 0, 1, 2
+- eg. We start with i = 0. If collision, increment i, which will bring it to next spot. If x = 9 and i = 1, we go back to the start of the array
+- Searching in linear probing:
+    - Use h(x) = x % 10 to find the index. While key is not found or curr pointer is not empty space, keep searching linearly
+- Time analysis
+    - loading factor in linear search always < 1 since array is fixed size
+    - we must ensure that loading factor < 0.5 when implementing hash table
+    - Avg successful search: (1/lambda) ln(1 / [1-lambda])
+    - Avg unsuccessful search: 1 / (1-lambda)
+- Issues with linear probing
+    - still not space efficient as loading factor < 0.5 ie. half space is empty
+    - clustering happens (which takes longer time for search)
+- deletion
+    - Imagine you remove an element from index 5. But the elements in index 6 and 7 where there because of linear probing, so you need to
+    shift everything back up. this is not feasible
+    - Solution
+        1. Rehashing: When you delete an element, take out that key and re-insert everything. Not recommended as time consuming
+        2. boolean flag. At the deleted index, put a flag saying that it is deleted
+
+Quadratic probing
+- Used to solve the clustering problem in linear probing
+- Everything is same just f(i) = i^2
+
+Double hashing
+- another technique to reduce collisions using 2 hash functions
+- h1(x) = x % 10
+- h2(x) = 7 - (x % 7)
+    - h2 should never return 0
+- h'(x) = [ h1(x) + i * h2(x) ] % 10
+
+Hash function selection
+- hash function should uniformly distribute data
+- hash function must return the same output for every same input
+
+1. Mod
+- prefer size of hash table to be primer number
+- x % prime number => this reduces collision
+2. Midsquare
+- key = 11 => 11^2 = 121 => so index 2
+- key = 13 => 13^2 = 169 => so index 6
+3. Folding
+- key = 123347
+- 12   33   47
+- Sum of these 3 digits = 92
+- Store in index 92
+
