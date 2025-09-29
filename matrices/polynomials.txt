@@ -1,0 +1,13 @@
+Polynomial
+
+- A collection of terms where each term has a coefficient and exponent eg. 3x^2
+- Can represent each term as a struct with coef and exponent
+- Then polynomial can be an array of terms
+
+Adding polynomials
+- initialise an array where size is the sum of the size of 2 polynomials
+- initialise i and j pointers for arr 1 and arr 2. initialise k for arr 3
+- while i < arr1.length and j < arr2.length
+    - if i exponent > j exponent: copy i into arr 3. increment i and k
+    - if j exponent > i exponent: copy j into arr 3. increment j and k
+    - if i exponent = j exponent: copy sum of i and j coefficients into arr 3. increment i, j, k

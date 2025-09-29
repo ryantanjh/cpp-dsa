@@ -1,0 +1,6 @@
+Sparse matrix
+- matrices with many 0s in them
+- how to represent only the spaces with elements?
+1. Coordinate list
+    - list of coordinates
+    - each element in the list is a tuple of (row index, col index, value)
