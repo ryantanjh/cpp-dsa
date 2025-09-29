@@ -1,0 +1,91 @@
+Graph
+
+- collection of vertices and edges
+- edges can be directed or undirected
+- degree: number of edges connected to a vertex
+- strongly connected graph: from any vertex you can reach any vertex
+- directed acyclic graph: From any vertex you cannot reach back the same vertex ie. no cycles
+
+Graph representation of non-directed graph
+
+1. Adjacency matrix
+- Store in a v x v matrix where v is number of vertices
+- If there is an edge between i and j, store 1 in that index
+- For weighted graph, store weight instead of 1
+- Time complexity is usually O(n^2)
+
+2. Adjacency list
+- First create an array where each index is a vertice
+- Each index is a pointer to a linkedlist which contains all the vertices connected to it
+- For weighted graph, each node can store weight as well
+- Time complexity is usually V + 2E since each edge represented twice
+
+3. Compact list
+- Lets say there are 5 vertices and 7 edges
+- We create an array of size : v + 2e + 1 = 20
+- Store edges in first 5 indexes
+- Leave an empty space at index 6 (So program can stop iterating through starting vertice)
+- Each index will store the index of where the edges are stored
+- Eg At index 1, we store 7. Vertice 1 is connected to vertices 2, 3, 4
+- So at index 7, 8, 9 we store 2, 3, 4
+- At index 2 we store 10. Meaning at index 10 onwards we store vertices connected to vertice 2
+- For weighted graph, we create another array to store weights at same index
+
+Graph representation of directed graph
+1. Adjacency matrix
+- Same as before but only 1 direction. eg. if edge from 1 to 2, value is true for A[1][2] but not A[2][1]
+- out degree of a vertex: check row, in degree check col
+
+2. Adjacency list
+- Same representation
+- out degree: length of linked list, in degree: need to iterate through whole array and check if elem exist in linkedlist
+
+3. Compact list
+- Same representation which shows outgoing edges
+- out degree: difference in values of index eg. In the example above, out degree of vertex 1 is 10 - 7 = 3
+- in degree: need check through whole list, or create a compact list which shows in degrees
+
+BFS
+- Similar to level order traversal in binary tree
+- time complexity: O(n^2)
+
+Steps (Adjacency matrix impl):
+- Initialise a 'visited' array and a queue
+1. Handle starting node. Append this node to queue and mark as visited
+2. While queue is not empty
+    a. Pop from queue
+    b. For each node connected to it (scan through columns of matrix)
+           i. If not visited, mark as visited and append to queue, as well as print the node
+
+
+DFS
+- Similar to preorder traversal
+
+Steps (Adjacency matrix impl)
+- initialise a visited array
+- If node is not visited, mark as visited and print it
+- For each of the nodes connected to it (search through matrix columns)
+    - If not yet visited, perform DFS on that node
+
+Disjoint subset
+- Representation
+    - Initialise an array of size n where n is the total number of elements in space
+    - Each subset is represented as a graph eg. {3, 5, 9} & {4, 6, 1, 7}
+    - Each subset will have a parent node: 3 is parent, meaning 5 and 9 belong to subset where 3 is parent
+    - If element is parent, value = -x, where x is number of children, at index e where e is the element
+    - If element is child, its value is the value of its parent eg. 5 will store 3 at index 5
+    - If element is not in any of the subsets, represent as -1
+- Why represent it this way?
+    - Very easy for us to detect cycles
+    - If we FIND the parent of 2 nodes, and they are the same parent, we have a cycle
+
+- Find operation
+
+- Union operation (combining 2 subsets)
+- Idea: Combine both parents
+- Function takes in 2 params, u and v which are the parent elements
+- If u < v
+    - u becomes parent, so A[u] = A[u] + A[v], since parent is -x where x is total number of elements
+    - A[v] = u, since v's parent is now u
+- else:
+    - do the opposite as v becomes parent
