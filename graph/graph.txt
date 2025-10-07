@@ -67,7 +67,7 @@ Steps (Adjacency matrix impl)
 - For each of the nodes connected to it (search through matrix columns)
     - If not yet visited, perform DFS on that node
 
-Disjoint subset
+Disjoint subset (Similar to compact list representation)
 - Representation
     - Initialise an array of size n where n is the total number of elements in space
     - Each subset is represented as a graph eg. {3, 5, 9} & {4, 6, 1, 7}
@@ -80,12 +80,24 @@ Disjoint subset
     - If we FIND the parent of 2 nodes, and they are the same parent, we have a cycle
 
 - Find operation
+    - Idea: Find who is the parent of any node
+    - Allows us to check parents of 2 nodes, to see if there is a cycle
+
+    Find(u) {
+        int x = u;
+        while A[x] > 0:
+            x = A[x]
+        return x; // returns index of parent element since parent is a negative number
+    }
 
 - Union operation (combining 2 subsets)
-- Idea: Combine both parents
-- Function takes in 2 params, u and v which are the parent elements
-- If u < v
-    - u becomes parent, so A[u] = A[u] + A[v], since parent is -x where x is total number of elements
-    - A[v] = u, since v's parent is now u
-- else:
-    - do the opposite as v becomes parent
+    - Idea: Combine both parents
+    - Function takes in 2 params, u and v which are the parent elements
+
+    Union(u, v) {
+    - If u < v
+        - u becomes parent, so A[u] = A[u] + A[v], since parent is -x where x is total number of elements
+        - A[v] = u, since v's parent is now u
+    - else:
+        - do the opposite as v becomes parent
+    }

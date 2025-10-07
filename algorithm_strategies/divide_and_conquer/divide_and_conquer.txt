@@ -1,0 +1,18 @@
+
+Idea: Splitting a problem into sub problems
+- sub problems should have same definition as main problem
+- solution to main problem is the combination of solution of its sub problems
+- need a method for combining the sub solutions
+- divide and conquer is always recursive
+
+Algorithm DAC(p)
+{
+    if (p is a small problem ie base case) {
+        return solution to p
+    } else {
+        1. divide p into sub problems p1, p2...pn
+        2. apply(DAC(p1), DAC(p2) .. )
+        3. combine(DAC(p1, DAC(p2).. )
+    }
+}
+

@@ -1,0 +1,7 @@
+Strategies we can use
+=======================
+1. Divide and Conquer
+2. Greedy
+3. Dynamic Programming
+4. Backtracking
+

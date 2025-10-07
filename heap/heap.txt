@@ -1,0 +1,24 @@
+Heap
+
+- Implemented using array representation of tree
+- A heap is a complete binary tree (no empty space in array)
+- Each node >= all its descendents, so we can have duplicates
+
+Insert (Inserts from bottom up)
+- Insert in next empty space
+- while there is a parent
+    - Compare with parent
+    - if bigger than parent, swap with parent
+
+Priority queue
+- insert in order of priority
+- delete always starts from highest priority
+- Array representation
+    - insert: O(1). just put one by one into array
+    - delete: O(2n). search for max element, and then delete (by shifting elements to right)
+
+- Heap representation
+    - insert: o(logn)
+    - delete: o(logn)
+
+- Therefore heap is the best data structure to implement priority queue

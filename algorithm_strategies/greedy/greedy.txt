@@ -1,0 +1,119 @@
+What are optimization problems?
+
+- A problem is given that has many solutions
+= The problem also has a constraint (budget of 1000)
+- The problem also has an objective (max storage)
+- eg. Problem: What phone should i buy. But i have a budget of $1000. And i want the MAXIMUM storage
+- There will only be 1 optimal solution
+
+How to solve optimization problems
+- greedy
+- dynamic programming
+- branch and bound
+
+Greedy algorithm
+
+Algorithm Greedy (A, n)
+{
+    solution = empty set
+    for i = 1 to n {
+        x = select (A, n)
+        if feasible(solution, x) {
+            solution = solution union x
+        }
+    }
+    return solution
+}
+
+- feasible() checks the constraint
+- select() needs to be designed such that it helps us get the solution based on the objective function
+
+2 paradigms of greedy (
+    1. subset (solution is a subset of input)
+    2. order (solution is sorted input)
+
+Knapsack (fractional)
+=======================
+
+- You have a knapsack with a max weight, as well as a list of objects, each with profit p and weight w
+- What is the maximum profit we can get, accounting for the constraint
+- We can also take a fraction of an item
+
+Selection method 1:
+- Select one by one starting from highest profit
+- Each time we increment profit, and subtract weight from max weight until we hit 0 (last one just add fractional profit)
+
+Selection method 2:
+- Select one by one starting from lowest weight possible
+
+Selection method 3:
+- Calculate the profit per weight for each object
+- Select one by one from the highest profit per weight
+
+- After trying out all, we see that selection method 3 gives us the highest profit
+- Now we know that for knapsack problem, this is the optimal solution
+- Greedy method involves trying out different selection methods to determine which is the best one
+
+Pseudo code
+- 2D arrays, one for profit and one for weight, each element is an object
+KS (obj) {
+    Sort(obj) # sort by weight/profit
+    profit = 0
+    for (int i = 0; i < n; i++) {
+        if weight of object is less than capacity:
+              profit += profit of object
+              capacity -= capacity of object
+        else:
+            profit += fractional profit
+            break
+    }
+    return profit
+}
+
+MST
+=====
+- A spanning tree is a sub graph of a graph having all its vertices
+- A spanning tree cannot have a cycle
+- Number of edges in a spanning tree = number of vertices - 1
+- We can only find a spanning tree if a graph is connected
+- 1 graph can have multiple spanning trees
+
+Minimum cost spanning tree
+- Add weights to the graph now
+- Cost is the sum of the weights
+- We want to find the spanning tree with minimum cost
+
+2 algos to find MST
+- prim
+- kruskal
+
+Use cases in real life
+- Lets say we have a graph where each node is a city, and each edge is the road between cities
+- What road should be constructed so that all cities are connected, but total distance is minimum
+
+- Each node is a computer in a network
+- How should we link the computers so total cable needed is minimum
+
+Kruskal Algorithm
+- Select the edges starting from the smallest
+- Whenever we add the edge, check if cycle. If cycle exist, skip this edge
+- Repeat until number of edges is v - 1
+
+How to check if cycle exists?
+- Use disjoint subset algorithm
+
+How do we always find the minimum edge?
+- Use a heap
+
+
+
+
+
+
+
+
+
+
+
+
+
