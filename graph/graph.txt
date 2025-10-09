@@ -20,7 +20,11 @@ Graph representation of non-directed graph
 - For weighted graph, each node can store weight as well
 - Time complexity is usually V + 2E since each edge represented twice
 
-3. Compact list
+3. Edge list
+- First create a matrix where each row is an edge
+- col 1 and col 2 are the 2 nodes connecting that edge. col 3 is the weight
+
+4. Compact list
 - Lets say there are 5 vertices and 7 edges
 - We create an array of size : v + 2e + 1 = 20
 - Store edges in first 5 indexes
@@ -95,7 +99,7 @@ Disjoint subset (Similar to compact list representation)
     - Function takes in 2 params, u and v which are the parent elements
 
     Union(u, v) {
-    - If u < v
+    - If A[u] < A[v]
         - u becomes parent, so A[u] = A[u] + A[v], since parent is -x where x is total number of elements
         - A[v] = u, since v's parent is now u
     - else:

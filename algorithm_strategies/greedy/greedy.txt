@@ -78,16 +78,17 @@ MST
 - We can only find a spanning tree if a graph is connected
 - 1 graph can have multiple spanning trees
 
-Minimum cost spanning tree
-- Add weights to the graph now
-- Cost is the sum of the weights
-- We want to find the spanning tree with minimum cost
+Minimum cost spanning tree problem
+- Add weights to the graph now, ost is the sum of the weights
+- Optimisation problem Constraint: It needs to be a spanning tree ie. no cycle
+- Optimisation problem  Objective: We want to find the spanning tree with minimum cost
 
 2 algos to find MST
 - prim
 - kruskal
 
 Use cases in real life
+======================
 - Lets say we have a graph where each node is a city, and each edge is the road between cities
 - What road should be constructed so that all cities are connected, but total distance is minimum
 
@@ -95,18 +96,17 @@ Use cases in real life
 - How should we link the computers so total cable needed is minimum
 
 Kruskal Algorithm
+===================
+Algo:
 - Select the edges starting from the smallest
 - Whenever we add the edge, check if cycle. If cycle exist, skip this edge
 - Repeat until number of edges is v - 1
 
 How to check if cycle exists?
-- Use disjoint subset algorithm
+- Use disjoint subset
 
-How do we always find the minimum edge?
-- Use a heap
-
-
-
+How do we always select the minimum edge?
+- Use a heap (priority queue)
 
 
 

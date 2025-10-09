@@ -3,6 +3,8 @@ Heap
 - Implemented using array representation of tree
 - A heap is a complete binary tree (no empty space in array)
 - Each node >= all its descendents, so we can have duplicates
+- The reason why we use heap instead of AVL tree is because AVL tree cannot have duplicates
+- Very useful for priority queue where items are sorted but can have duplicates
 
 Insert (Inserts from bottom up)
 - Insert in next empty space
