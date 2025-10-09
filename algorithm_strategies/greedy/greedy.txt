@@ -97,7 +97,7 @@ Use cases in real life
 
 Kruskal Algorithm
 ===================
-Algo:
+Steps:
 - Select the edges starting from the smallest
 - Whenever we add the edge, check if cycle. If cycle exist, skip this edge
 - Repeat until number of edges is v - 1
@@ -108,8 +108,17 @@ How to check if cycle exists?
 How do we always select the minimum edge?
 - Use a heap (priority queue)
 
+Prims
+=====
+Steps
+1. select any vertex as the starting vertex. Then select its min cost edge, and
+increment min cost value.
+2. from all selected vertex, select the minimum edge connected to them and connect it
 
+Prims and kruskal always give same result
 
+- we use adjacency matrix
+- we also use an array to mark if a vertex has already been selected
 
 
 

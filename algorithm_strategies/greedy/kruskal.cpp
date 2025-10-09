@@ -43,6 +43,7 @@ int kruskal(int edges[][3], int num_edge, int num_vertice) {
     /**
      * edges: edge list
      * n is number of vertices
+     * time complexity: O(Vlog(E)) => Pop from heap takes log(E). Loop runs V time
      */
     priority_queue<Edge, vector<Edge>, greater<Edge> > pq;
     for (int i = 0; i < num_edge; i++) {
