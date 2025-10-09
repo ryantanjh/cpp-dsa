@@ -13,6 +13,11 @@ int prim(int** cost, int n) {
      int* near = new int[n + 1]; // starting from index 1 to n
      bool* selected = new bool[n + 1];
 
+     // Initialize selected array
+     for (int i = 1; i <= n+1; i++) {
+         selected[i] = false;
+     }
+
      // initial step
      int u = 1; // u is the currently selected vertice. select vertice 1 first
      int v; // v is the min cost vertice
@@ -68,4 +73,42 @@ int prim(int** cost, int n) {
          }
      }
      return min_cost;
+}
+
+int main() {
+    // Same graph as in kruskal.cpp
+    // Kruskal uses 0-indexed (0,1,2,3), Prim uses 1-indexed (1,2,3,4)
+    int n = 4;
+
+    // Create adjacency matrix (1-indexed)
+    int** cost = new int*[n + 1];
+    for (int i = 0; i <= n; i++) {
+        cost[i] = new int[n + 1];
+        for (int j = 0; j <= n; j++) {
+            cost[i][j] = INT_MAX;
+        }
+    }
+
+    // Add edges (matching kruskal.cpp graph)
+    // Kruskal: {0, 1, 10} -> Prim: 1-2 with weight 10
+    cost[1][2] = cost[2][1] = 10;
+    // Kruskal: {0, 2, 6} -> Prim: 1-3 with weight 6
+    cost[1][3] = cost[3][1] = 6;
+    // Kruskal: {0, 3, 5} -> Prim: 1-4 with weight 5
+    cost[1][4] = cost[4][1] = 5;
+    // Kruskal: {1, 3, 15} -> Prim: 2-4 with weight 15
+    cost[2][4] = cost[4][2] = 15;
+    // Kruskal: {2, 3, 4} -> Prim: 3-4 with weight 4
+    cost[3][4] = cost[4][3] = 4;
+
+    int result = prim(cost, n);
+    cout << "Min Cost: " << result << endl;
+
+    // Free memory
+    for (int i = 0; i <= n; i++) {
+        delete[] cost[i];
+    }
+    delete[] cost;
+
+    return 0;
 }
