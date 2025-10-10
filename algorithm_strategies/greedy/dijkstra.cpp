@@ -8,14 +8,16 @@ vector<int> dijkstra(vector<vector<int> >& cost, int n, int s) {
      * s is index of starting vertex starting from index 1
      * time: O(n^2)
      */
-     vector<int> d(n+1, 0);
+     vector<int> d(n+1, INT_MAX);
      vector<bool> selected(n+1, false);
+     d[s] = 0;
      for (int i = 1; i <= n; i++) {
-         d[i] = cost[s][i]; // cost from starting vertex to vertex
-         // if no link, it assigns to int_max
+         if (i != s) {
+             d[i] = cost[s][i]; // cost from starting vertex to vertex
+             // if no link, it assigns to int_max
+         }
      }
      selected[s] = true;
-     d[s] = 0;
 
      // repeating step
      for (int k = 1; k < n; k++) {
@@ -31,7 +33,7 @@ vector<int> dijkstra(vector<vector<int> >& cost, int n, int s) {
          selected[u] = true;
          // now relax all those connected to u
          for (int v = 1; v <= n; v++) {
-             if (!selected[v] && d[u] + cost[u][v] < d[v]) {
+             if (!selected[v] && cost[u][v] != INT_MAX && d[u] + cost[u][v] < d[v]) {
                  d[v] = d[u] + cost[u][v];
              }
          }
@@ -45,8 +47,9 @@ int main() {
     // Add edges
     cost[1][2] = cost[2][1] = 10;
     cost[1][3] = cost[3][1] = 6;
-    cost[1][4] = cost[4][1] = 5;
-    cost[2][4] = cost[4][2] = 15;
+    cost[3][2] = cost[2][3] = 1;
+    cost[1][4] = cost[4][1] = 20;
+    cost[2][4] = cost[4][2] = 0;
     cost[3][4] = cost[4][3] = 4;
     vector<int> res = dijkstra(cost, 4, 1);
     for (int i = 1; i <= 4; i++) {
