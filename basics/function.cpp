@@ -46,7 +46,7 @@ int main() {
 	swap2(&x, &y);
 	cout << "x: " << x << ", y: " << y << endl;  // x and y are swapped
 
-	// call by reference. Dont use unless function is simple. Easy to introduce bugs since function scope is technically part of main
+	// call by reference.
 	swap3(x, y);
 	cout << "x: " << x << ", y: " << y << endl; // x and y are swapped again => so back to original
 }

@@ -122,6 +122,25 @@ Prims and kruskal always give same result
 
 
 
+Dijkstra
+========
+
+- From a single vertex, what is the shortest path to all other vertice
+- constraint: path
+- objective: min distance
+
+algorithm
+initial step
+- from starting vertice, find out the distane to all other vertice
+- if no direct path, put as infinity
+
+repeating step
+- from the remaining vertexes, select the shortest distance one ie. smallest d[x]
+    - relax all its connected (non selected) vertices
+    - relaxation: if d[u] + c(u,v) < d[v]: d[v] = d[u] + c(u,v)
+    - d[x] is the distance from starting vertex to vertex x
+    - c(u, v) is the cost between 2 vertex
+
 
 
 

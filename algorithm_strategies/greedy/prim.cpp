@@ -6,6 +6,7 @@ int prim(int** cost, int n) {
     /**
      * n is number of vertice
      * cost is the adjacency matrix representing graphs
+     * time complexity : o(V^2)
      */
      int min_cost = 0;
      // near array where index is each vertice,
