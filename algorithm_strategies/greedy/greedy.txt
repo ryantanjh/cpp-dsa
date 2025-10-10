@@ -141,7 +141,22 @@ repeating step
     - d[x] is the distance from starting vertex to vertex x
     - c(u, v) is the cost between 2 vertex
 
+optimal merge pattern
+======================
+Given 4 list a, b, c, d each with different length of 1, 2, 3, 4
+merging two lists take (n + m) time when merging them
+different merge methods have different results:
+1. merge a-b => ab, ab-c => abc, abc-d => abcd
+time = 3 + 6 + 10 = 19
+2. merge a-b => ab, c-d => cd , ab-cd => abcd
+time = 3 + 7 + 10 = 20
 
+So which is the best approach to merge?
+Idea: Always take the smallest 2 list and merge
 
+Algorithm:
+Start with a list where each element is the size of the list
+while the size of list > 1:
+    - take the 2 smallest sizes, add them, and push back the combined size into the list
 
 
