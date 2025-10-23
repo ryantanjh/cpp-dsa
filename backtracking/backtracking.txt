@@ -1,0 +1,31 @@
+Use when you have multiple solutions and you want all solutions
+
+Permutations
+- generate all permutations
+
+Nqueens
+
+time: O(n^n) => recursive call in for loop
+
+bool valid(k, l) { // k is column, l is row
+    for (int i = 0; i < l; i++) { // check through all the rows above the curr row
+        // for each row above curr row, check if the curr queen with clash with that row's queen: vertically and diagonally
+        1. check if same col
+        2. check if diagonal match => abs(i-j) is the same
+    }
+    return false
+}
+
+nqueens (int k) { // k is the curr row
+    for (i = 1; i <= n; i++) { // for each column
+        if (valid (k, i)) { // check if you can place a queen at that column and row
+            x[k] = i; // if can place the queen there, store it in x => array where indices is row, and value is col you stored it
+            if (k == n) { // if row reaches the end, just print the array and stop the function
+                print(x)
+                return;
+            }
+            nqueens(k + 1) // check next row
+        }
+    }
+}
+nqueens(0)

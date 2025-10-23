@@ -1,0 +1,123 @@
+DP
+===
+- useful for solving optimisation problems ie. one optimal solution
+- greedy: selection procedure
+- dynamic: check all possible solutions and find best solution
+- dp generates tabular data which stores all the possible solutions
+- recursively call solutions, but cache solutions to avoid excessive calls
+
+)/1 Knapsack (robber/thief problem)
+- same as knapsack but cannot take partial object
+- greedy wont work since fractions not allowed
+- need to try all solutions
+
+method 1: sets method
+- number of solutions is 2^n: each object you either take or dont take
+- so time complexity is O(2^n)
+- recursive calls: starting from index of last object eg. x=4
+    - can either select or dont select
+    - next level, for each path, you either select or dont select x = 3
+    - go all the way down to x1. each path represents one solution
+let m be the available capacity
+foo_n(m) = max(f_n-1(m), f_n-1(m - w[n]) + p[n])
+
+set method:
+- create empty set where set contains tuples (profit, weight) of included obj
+- initialise obj 1 in set eg. {(5, 4)}
+- for each of the remaining objects
+    - loop through the prev array: add this objects profits and weigts
+        - { (6, 5) } if obj 2 is (1, 1)
+        - only add if weight < constraint to save time
+    - merge the 2 arrays: arr 1 is you didnt include, arr 2 is you include
+        - combined: { (5, 4), (6, 5) }
+- time complexity is 2^n
+
+matrix chain multiplication
+- problem: To multiply matrix A X B X C X D, there are multiple ways
+- eg. AB X CD or ABC X D. Each has different cost. But which is the minimum cost?
+- Cost of multiplying a matrix: A is 4 x 2 and B is 2 x 3
+    - cost = 4 x 2 x 3 = 24
+Algorithm:
+Matrix A, B, C, D has index 1 to 4
+Initialise a dimension array d with length 5
+A: 3x2  B: 2x4  C: 4x2  D: 2x5
+d = [3, 2, 4, 2, 5]
+
+function takes in index of matrix
+eg. m(1, 4) means multiplying AxBxCxD
+m(2, 3) means BxC
+int m(int i , int j ) -> returns min cost {
+    if i == j: return 0; // cost of multiplying matrix with itself is nothing
+    min_cost = []
+    for (int k = i; k < j; k++) {
+        cost = m(i, k) + m(k + 1, j) + d[i-1] * d[k] * d[j]
+        min_cost.append(cost)
+    }
+    return min(min_cost)
+}
+
+m(1, 4)
+cost_1 = m(1, 1) + m(2, 4) + 3 * 2 * 4  => A(BCD) which is 3 * 2 * 4 => cost of multiplying A with BCD
+this then calls m(2, 4) which follows the same logic
+
+time: O(n^n) since it in each iteration, it also loops n times
+
+with memoizaion: n^2 as we save data in a n by n matrix, and if i,j exists, dont need calculate again
+
+=====
+LCS
+=====
+str: abcdef
+subseq: abdf, bcf, acef
+- just need to be same order as original string
+
+problem: given 2 strings, they both have many subsequence. what is the common longest subsequence
+
+solution: O(n^3)
+for i in range(n)
+    s = 0
+    for j in range(i , n)
+        s = sum(sub_arr[i: j) # this takes o(n)
+        if s > max_sum : max_sum = sum
+
+O(n^2 solution)
+for i in range(n)
+    s = 0
+    for j in range(i , n)
+        s += arr[j]
+        if s > max_sum : max_sum = sum
+
+DP approach : O(n) time, also known as kadane's algorithms. can be improved to constant space
+s = 0
+o = []
+o[0] = arr[0] # put first elem in first index
+for i in range(1, len(arr)):
+    if o[i-1] < 0:
+        o[i] = arr[i]
+    else:
+        o[i] = o[i-1] + arr[i]  # add it to prev only if prev is positive
+
+return max(s)
+
+
+Recursive solution
+
+take 2 pointers
+- if characters match: decr both i and j and add one to length
+- else:
+    - try decr only i
+    - try decr only j
+- get the longest solution
+
+*base case: if i or j exceeds limit, return 0
+**for recursion always do decrement, so i and j should start from end of string
+- time: 2^n
+
+
+
+
+
+
+
+
+
