@@ -131,7 +131,7 @@ Dijkstra
 
 algorithm
 initial step
-- from starting vertice, find out the distane to all other vertice
+- from starting vertice, find out the distance to all other vertice
 - if no direct path, put as infinity
 
 repeating step
